@@ -3,20 +3,27 @@ public class PalindromeCheckerApp {
 
         public static void main(String[] args) {
 
-            String originalString = "level";
+            String input = "radar";
 
-            String reversedString = "";
+            char[] characters = input.toCharArray();
 
+            int start = 0;
+            int end = characters.length - 1;
 
-            for (int i = originalString.length() - 1; i >= 0; i--) {
-                reversedString = reversedString + originalString.charAt(i);
+            boolean isPalindrome = true;
+
+            while (start < end) {
+                if (characters[start] != characters[end]) {
+                    isPalindrome = false;
+                    break;
+                }
+                start++;
+                end--;
             }
 
+            System.out.println("Input String: " + input);
 
-            System.out.println("Original String : " + originalString);
-            System.out.println("Reversed String : " + reversedString);
-
-            if (originalString.equals(reversedString)) {
+            if (isPalindrome) {
                 System.out.println("Result: It is a Palindrome.");
             } else {
                 System.out.println("Result: It is NOT a Palindrome.");
