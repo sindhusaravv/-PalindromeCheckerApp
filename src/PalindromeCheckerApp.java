@@ -1,24 +1,14 @@
 import java.util.Scanner;
 
- class UseCase10PalindromeCheckerApp {
-
-    public static void main(String[] args) {
-
-        Scanner scanner = new Scanner(System.in);
-
-        System.out.println("Enter a string to check palindrome:");
-        String input = scanner.nextLine();
-        String normalized = input.replaceAll("[^a-zA-Z0-9]", "").toLowerCase();
-        boolean isPalindrome = checkPalindrome(normalized);
-        if (isPalindrome) {
-            System.out.println("The given string is a Palindrome (Ignoring spaces and case).");
-        } else {
-            System.out.println("The given string is NOT a Palindrome.");
+class PalindromeChecker {
+    public boolean checkPalindrome(String input) {
+        if (input == null) {
+            return false;
         }
-        scanner.close();
+        String normalized = input.replaceAll("[^a-zA-Z0-9]", "").toLowerCase();
+        return isPalindrome(normalized);
     }
-
-    public static boolean checkPalindrome(String str) {
+    private boolean isPalindrome(String str) {
         int left = 0;
         int right = str.length() - 1;
         while (left < right) {
@@ -29,5 +19,21 @@ import java.util.Scanner;
             right--;
         }
         return true;
+    }
+}
+class UseCase11PalindromeCheckerApp {
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        PalindromeChecker checker = new PalindromeChecker();
+        System.out.println("Enter a string to check palindrome:");
+        String input = scanner.nextLine();
+        boolean result = checker.checkPalindrome(input);
+        if (result) {
+            System.out.println("The given string is a Palindrome.");
+        } else {
+            System.out.println("The given string is NOT a Palindrome.");
+        }
+        scanner.close();
     }
 }
